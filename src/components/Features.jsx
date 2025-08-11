@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef, useState } from "react";
 import { TiLocationArrow } from "react-icons/ti";
 
