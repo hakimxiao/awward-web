@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import AnimatedTitle from "./AnimatedTitle";
 import gsap from "gsap";
+import Button from "./Button";
 
 const Story = () => {
   const frameRef = useRef("null");
@@ -29,7 +30,7 @@ const Story = () => {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const rotateX = ((y - centerX) / centerY) * -10;
+    const rotateX = ((y - centerY) / centerY) * -10;
     const rotateY = ((x - centerX) / centerX) * 10;
 
     gsap.to(element, {
@@ -70,6 +71,49 @@ const Story = () => {
                 />
               </div>
             </div>
+
+            {/* for the rounded corner */}
+            <svg
+              className="invisible absolute size-0"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <filter id="flt_tag">
+                  <feGaussianBlur
+                    in="SourceGraphic"
+                    stdDeviation="8"
+                    result="blur"
+                  />
+                  <feColorMatrix
+                    in="blur"
+                    mode="matrix"
+                    values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+                    result="flt_tag"
+                  />
+                  <feComposite
+                    in="SourceGraphic"
+                    in2="flt_tag"
+                    operator="atop"
+                  />
+                </filter>
+              </defs>
+            </svg>
+          </div>
+        </div>
+
+        <div className="-mt-80 flex w-full justify-center md:-mt-64 md:me-44 md:justify-end">
+          <div className="flex h-full w-fit flex-col items-center md:items-start">
+            <p className="mt-3 max-w-sm text-center font-circular-web text-violet-50 md:text-start">
+              Where realm converge, lies zentry and the boundless pillar,
+              Discover its secrets and shape your fate amidst infinite
+              opportunities.
+            </p>
+
+            <Button
+              id="realm button"
+              title="discover prologue"
+              containerClass="mt-5"
+            />
           </div>
         </div>
       </div>
